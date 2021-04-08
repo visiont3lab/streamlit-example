@@ -2,10 +2,7 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import cv2
-
 import onnxruntime as rt
-import numpy as np
-import cv2
 
 def apply(im,mi):
   im = cv2.cvtColor(im, cv2.COLOR_BGR2RGB)

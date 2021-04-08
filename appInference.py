@@ -38,7 +38,7 @@ st.set_option('deprecation.showfileUploaderEncoding', False)
 
 st.title("Model Inference")
 st.markdown('''
-## Test dklsakfdd  Manuel Algoritmo
+## Test dklsdsakfdd  Manuel Algoritmo
 
 1. Load an Image [supported extension "png","jpeg","jpg","bmp"]
 2. Run infernece

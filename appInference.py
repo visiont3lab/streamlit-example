@@ -47,14 +47,8 @@ st.markdown('''
  
 uploaded_file = st.file_uploader("Upload Image", type=["png","jpeg","jpg","bmp"])
 if uploaded_file is not None:
-  #print(np.fromstring(uploaded_file.read(), np.uint8))
-  im = cv2.imdecode(np.fromstring(uploaded_file.read(), np.uint8),cv2.IMREAD_COLOR)
+  im = cv2.imdecode(np.frombuffer(uploaded_file.read(), np.uint8),cv2.IMREAD_COLOR)
   im = apply(im,mi)
-  #image = Image.open(uploaded_file)
-  #base64_img_bytes = uploaded_file.read() # byte
-  #decoded_image_data = base64.decodebytes(base64_img_bytes)
-  #nparr = np.fromstring(decoded_image_data, np.uint8)
-  #img = cv2.imdecode(nparr, cv2.IMREAD_COLOR) # cv2.IMREAD_COLOR in OpenCV
   st.image(im, use_column_width=True ) # width=700)
 
 

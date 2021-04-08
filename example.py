@@ -3,6 +3,8 @@ import pandas as pd
 import numpy as np
 import cv2
 import onnxruntime as rt
+from PIL import Image
+import requests
 
 def apply(im,mi):
   im = cv2.cvtColor(im, cv2.COLOR_BGR2RGB)
@@ -65,8 +67,8 @@ vmax = st.sidebar.slider('V max value', 0, 255, 255)
 st.set_option('deprecation.showfileUploaderEncoding', False)
 uploaded_file = st.file_uploader("Upload Image", type=["png","jpeg","jpg","bmp"])
 if uploaded_file is not None:
-    im = cv2.imdecode(np.fromstring(uploaded_file.read(), np.uint8),cv2.IMREAD_COLOR)
-    
+    im = cv2.imdecode(np.frombuffer(uploaded_file.read(), np.uint8),cv2.IMREAD_COLOR)
+
     # Classificazione
     res = apply(im,mi)
     st.write(f"Nell'immagine appara: {res}")

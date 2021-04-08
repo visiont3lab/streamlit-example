@@ -41,7 +41,8 @@ st.markdown('''
 ## Test dklsdsakfdd  Manuel Algoritmo
 
 1. Load an Image [supported extension "png","jpeg","jpg","bmp"]
-2. Run infernece
+2. Run infernecedsa dsa
+3. fd
 ''')
  
 uploaded_file = st.file_uploader("Upload Image", type=["png","jpeg","jpg","bmp"])

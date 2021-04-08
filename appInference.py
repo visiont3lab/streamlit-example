@@ -7,7 +7,7 @@ from inference import modelInference
 # Requirements
 # pip3 install streamlit opencv-python onnxruntime
 # To run on replit type in the shell
-# streamlit run --server.enableCORS false --server.port 8080  appInference.py
+# streamlit run --server.enableCORS false --server.enableXsrfProtection false --server.port 8080  appInference.py
 
 def apply(im,mi):
   im = cv2.cvtColor(im, cv2.COLOR_BGR2RGB)

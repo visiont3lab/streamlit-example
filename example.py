@@ -36,7 +36,4 @@ if uploaded_file is not None:
 btn = st.button("Click me")
 if btn:
     st.write("Ok ho cliccato")
-
-age = st.slider('How old are you?', 0, 130, 25)
-st.write("I'm ", age, 'years old')
   

@@ -4,7 +4,6 @@ import numpy as np
 import cv2
 import onnxruntime as rt
 from PIL import Image
-import requests
 
 def apply(im,mi):
   im = cv2.cvtColor(im, cv2.COLOR_BGR2RGB)

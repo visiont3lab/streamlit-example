@@ -4,16 +4,11 @@ import cv2
 import onnxruntime as rt
 import os
 from download import download_file_from_google_drive
-
+import time
 # pip3 install streamlit opencv-python-headless onnxruntime 
 # streamlit run --server.enableCORS false --server.enableXsrfProtection false --server.port 8080  segmentation.py
 # https://drive.google.com/u/1/uc?export=download&confirm=hOw0&id=1-frfMZLVvyreJjhw-l1bsmBqymswmiRc
 
-path2model = os.path.join("models","deeplabv3_resnet101.onnx")
-if not os.path.exists(path2model):
-    file_id = '1-frfMZLVvyreJjhw-l1bsmBqymswmiRc'
-    destination = 'models/deeplabv3_resnet101.onnx'
-    download_file_from_google_drive(file_id, destination)
 
 pascal_voc_labes = [
     "Person",
@@ -105,11 +100,16 @@ class SegmentationInference:
 
 @st.cache(suppress_st_warning=True)
 def get_model():
-  inference = SegmentationInference(path2model)
-  return inference
+    path2model = os.path.join("models","deeplabv3_resnet50.onnx")
+    if not os.path.exists(path2model):
+        file_id = '1-frfMZLVvyreJjhw-l1bsmBqymswmiRc'
+        destination = 'models/deeplabv3_resnet50.onnx'
+        download_file_from_google_drive(file_id, destination)
+    inference = SegmentationInference(path2model)
+    return inference
 inference = get_model()
 
-st.title("DeepLabV3-Resnet101 Segmentation")
+st.title("DeepLabV3-Resnet Segmentation")
 
 backgrounds_path = os.path.join("images","backgrounds")
 names = os.listdir(backgrounds_path)

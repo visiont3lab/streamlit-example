@@ -9,28 +9,9 @@ import time
 # streamlit run --server.enableCORS false --server.enableXsrfProtection false --server.port 8080  segmentation.py
 # https://drive.google.com/u/1/uc?export=download&confirm=hOw0&id=1-frfMZLVvyreJjhw-l1bsmBqymswmiRc
 
-
-pascal_voc_labes = [
-    "Person",
-    "Car",
-    "Bicycle",
-    "Bus",
-    "Motorbike",
-    "Train",
-    "Aeroplane",
-    "Chair",
-    "Bottle",
-    "Dining Table",
-    "Potted Plant",
-    "TV/Monitor",
-    "Sofa",
-    "Bird",
-    "Cat",
-    "Cow",
-    "Dog",
-    "Horse",
-    "Sheep"
-]
+labels = {'background' : 0, 'aeroplane' : 1, 'bicycle' : 2, 'bird': 3, 'boat' :4, 'bottle': 5, 'bus': 6,
+ 'car': 7, 'cat': 8, 'chair': 9, 'cow': 10, 'diningtable': 11, 'dog': 12, 'horse': 13, 'motorbike': 14,
+ 'person': 15, 'pottedplant': 16, 'sheep': 17, 'sofa': 18, 'train': 19, 'tvmonitor': 20 }
 
 class SegmentationInference:
 
@@ -83,11 +64,18 @@ class SegmentationInference:
         # Select person
         mask = np.zeros(output.shape, dtype=np.uint8)
         mask[output == idx] = 255  # mask 0-1
+        
+        if idx==0:
+            mask = cv2.bitwise_not(mask)
+
         mask = np.repeat(mask[:, :, np.newaxis], 3, axis = 2)
-        kernel = np.ones((25,25), np.uint8)
-        mask = cv2.erode(mask, kernel) 
+        
+        if len(mask.flatten()==255)>20:
+            kernel = np.ones((3,3), np.uint8)
+            mask = cv2.erode(mask, kernel) 
+        
         mask = cv2.resize(mask, (w,h))
-        #display(to_pil_image(mask_t))
+         #display(to_pil_image(mask_t))
 
         # Replace background
         background[mask==255] = frame[mask==255]
@@ -127,9 +115,10 @@ if uploaded_file is not None:
     frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
     st.image(frame, use_column_width=True)
 
+label = st.selectbox("Select Classes",list(labels.keys()))
 btn = st.button("Combine")
 if btn:
-    background, select  = inference.replace_background(frame,background,idx=15)
+    background, select  = inference.replace_background(frame,background,idx=labels[label])
     st.image(background,use_column_width=True)
     #st.image(select,use_column_width=True)
         

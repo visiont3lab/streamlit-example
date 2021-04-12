@@ -1,5 +1,5 @@
 # streamlit-example
 Streamlit study app
 
-* [App Link]( https://streamlit-visiont3lab-example.herokuapp.com/)
-*  https://streamlit-visiont3lab-example.herokuapp.com/
+* [App Link]( https://streamlit-app-example.herokuapp.com/)
+*  https://streamlit-app-example.herokuapp.com/

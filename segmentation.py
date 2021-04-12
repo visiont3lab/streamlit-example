@@ -102,7 +102,7 @@ class SegmentationInference:
 def get_model():
     path2model = os.path.join("models","deeplabv3_resnet50.onnx")
     if not os.path.exists(path2model):
-        file_id = '1-frfMZLVvyreJjhw-l1bsmBqymswmiRc'
+        file_id = '1OTQSLxy4Yn-ZTrB7EIFQlVWDKcQsEbZB'
         destination = 'models/deeplabv3_resnet50.onnx'
         download_file_from_google_drive(file_id, destination)
     inference = SegmentationInference(path2model)
